@@ -1,0 +1,425 @@
+// Portal Example layout and components, built on Bootstrap's variables.
+
+$sidebar-width: 248px;
+
+html, body { height: 100%; }
+body { -webkit-font-smoothing: antialiased; }
+
+.font-mono { font-family: $font-family-monospace; font-size: 0.85em; }
+.text-ink { color: $ink !important; }
+.fw-semibold { font-weight: 600 !important; }
+.small-caps {
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $text-muted;
+}
+
+// ---------------------------------------------------------------- Shell
+.portal-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.portal-sidebar {
+  width: $sidebar-width;
+  flex-shrink: 0;
+  background: $ink;
+  color: rgba($white, 0.72);
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 0.875rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: $white;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 0 0.5rem 1.5rem;
+    text-decoration: none;
+  }
+
+  .nav-section {
+    padding: 1rem 0.625rem 0.375rem;
+    font-size: 0.68rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba($white, 0.4);
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba($white, 0.72);
+    border-radius: $border-radius;
+    padding: 0.55rem 0.75rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+
+    .bi { font-size: 1.05rem; opacity: 0.85; }
+
+    &:hover { color: $white; background: rgba($white, 0.06); text-decoration: none; }
+    &.active { color: $white; background: rgba($white, 0.12); }
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba($white, 0.1);
+    padding: 1rem 0.5rem 0;
+    font-size: 0.85rem;
+  }
+
+  @include media-breakpoint-down(lg) { display: none; }
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, $blue, $teal);
+  color: $white;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.portal-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.portal-topbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
+  background: rgba($white, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid $border-color;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  @include media-breakpoint-down(md) { padding: 0 1rem; }
+}
+
+.portal-content {
+  padding: 2rem;
+  max-width: 1280px;
+  width: 100%;
+
+  @include media-breakpoint-down(md) { padding: 1.25rem 1rem; }
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+
+  h1 { font-size: 1.6rem; margin: 0; letter-spacing: -0.01em; }
+  p { margin: 0.25rem 0 0; color: $text-muted; }
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $white;
+  background: $ink-soft;
+  flex-shrink: 0;
+
+  &.avatar-sm { width: 24px; height: 24px; font-size: 0.62rem; }
+}
+
+// ---------------------------------------------------------------- Cards
+.card { box-shadow: $box-shadow-sm; }
+.card-header { border-bottom-color: $border-color; padding-top: 1rem; padding-bottom: 1rem; }
+.card-title-sm { font-size: 0.95rem; font-weight: 650; margin: 0; color: $ink; }
+
+.stat-card {
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 1.15rem;
+  }
+  .stat-value { font-size: 1.65rem; font-weight: 700; color: $ink; line-height: 1.1; letter-spacing: -0.02em; }
+}
+
+@each $name, $color in (primary: $primary, info: $info, warning: $warning, success: $success) {
+  .soft-#{$name} { background: rgba($color, 0.12); color: shade-color($color, 15%); }
+}
+
+// ---------------------------------------------------------------- Tables
+.table-portal {
+  margin: 0;
+  thead th {
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $text-muted;
+    background: $light;
+    border-bottom: 1px solid $border-color;
+    white-space: nowrap;
+  }
+  tbody tr { cursor: pointer; }
+  tbody tr:hover > * { background: rgba($primary, 0.03); }
+  td { vertical-align: middle; }
+}
+
+.doc-link {
+  color: $ink;
+  font-weight: 600;
+  &:hover { color: $primary; }
+}
+
+.version-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: $font-family-monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba($primary, 0.1);
+  color: $primary;
+  &.is-muted { background: $light; color: $text-muted; }
+}
+
+// ---------------------------------------------------------------- File icons
+.file-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  background: $light;
+  color: $secondary;
+
+  &.ft-pdf { background: rgba($red, 0.1); color: $red; }
+  &.ft-doc { background: rgba($blue, 0.1); color: $blue; }
+  &.ft-sheet { background: rgba($green, 0.1); color: $green; }
+  &.ft-slides { background: rgba($amber, 0.15); color: shade-color($amber, 25%); }
+  &.ft-image { background: rgba($teal, 0.12); color: $teal; }
+  &.ft-archive { background: rgba(#7c5cd6, 0.12); color: #7c5cd6; }
+
+  &.file-icon-lg { width: 52px; height: 52px; font-size: 1.5rem; border-radius: 12px; }
+}
+
+// ---------------------------------------------------------------- Dropzone
+.dropzone {
+  border: 2px dashed #c9cfdb;
+  border-radius: $border-radius-lg;
+  background: $white;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: border-color 0.15s, background-color 0.15s;
+  cursor: pointer;
+
+  .dz-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 0.75rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: rgba($primary, 0.1);
+    color: $primary;
+    font-size: 1.4rem;
+  }
+
+  &:hover, &:focus-visible { border-color: $primary; outline: none; }
+  &.is-dragging { border-color: $primary; background: rgba($primary, 0.04); }
+  &.is-disabled { cursor: not-allowed; opacity: 0.6; }
+  &.dropzone-compact { padding: 1.25rem; }
+}
+
+.upload-queue {
+  .upload-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+    border-top: 1px solid $border-color;
+    &:first-child { border-top: 0; }
+  }
+  .progress { margin-top: 0.4rem; }
+}
+
+// ---------------------------------------------------------------- Version timeline
+.version-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  > li {
+    position: relative;
+    padding: 0 0 1.5rem 2.75rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 34px;
+      bottom: 0;
+      width: 2px;
+      background: $border-color;
+    }
+    &:last-child { padding-bottom: 0; }
+    &:last-child::before { display: none; }
+  }
+
+  .tl-dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-family: $font-family-monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: $white;
+    border: 2px solid $border-color;
+    color: $text-muted;
+  }
+
+  .is-restore .tl-dot { border-color: $teal; color: $teal; }
+  .is-current .tl-dot { background: $primary; border-color: $primary; color: $white; }
+
+  .tl-card {
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    padding: 0.875rem 1rem;
+    background: $white;
+  }
+  .is-current .tl-card { border-color: rgba($primary, 0.45); box-shadow: 0 0 0 3px rgba($primary, 0.08); }
+
+  .tl-note { color: $body-color; margin: 0.35rem 0 0; white-space: pre-line; }
+  .tl-meta { font-size: 0.82rem; color: $text-muted; }
+}
+
+.size-delta {
+  font-family: $font-family-monospace;
+  font-size: 0.75rem;
+  &.up { color: $success; }
+  &.down { color: $danger; }
+}
+
+// ---------------------------------------------------------------- Activity
+.activity-feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid $border-color;
+    font-size: 0.875rem;
+    &:first-child { border-top: 0; padding-top: 0; }
+  }
+  .act-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
+  time { color: $text-muted; font-size: 0.78rem; }
+}
+
+// ---------------------------------------------------------------- Login
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  background: $white;
+
+  @include media-breakpoint-down(lg) { grid-template-columns: 1fr; }
+}
+
+.login-aside {
+  background:
+    radial-gradient(1200px 500px at -10% 110%, rgba($teal, 0.35), transparent 60%),
+    radial-gradient(800px 400px at 110% -10%, rgba($blue, 0.45), transparent 60%),
+    $ink;
+  color: rgba($white, 0.8);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h2 { color: $white; font-size: 2.25rem; letter-spacing: -0.02em; line-height: 1.15; max-width: 22ch; }
+  .feature { display: flex; gap: 0.75rem; margin-top: 1rem; }
+  .feature .bi { color: lighten($teal, 25%); font-size: 1.1rem; }
+
+  @include media-breakpoint-down(lg) { display: none; }
+}
+
+.login-form-wrap {
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.25rem;
+
+  .login-form { width: 100%; max-width: 380px; }
+}
+
+.demo-accounts {
+  button { text-align: left; }
+}
+
+// ---------------------------------------------------------------- Misc
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: $text-muted;
+  .bi { font-size: 2rem; color: #b5bccb; display: block; margin-bottom: 0.5rem; }
+}
+
+.checksum {
+  font-family: $font-family-monospace;
+  font-size: 0.75rem;
+  color: $text-muted;
+}
+
+.toast-stack {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 1100;
+}
+
+.mobile-nav {
+  display: none;
+  @include media-breakpoint-down(lg) { display: inline-flex; }
+}
