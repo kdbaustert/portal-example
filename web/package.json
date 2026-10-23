@@ -1,0 +1,31 @@
+{
+  "name": "portal-example-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portal Example — client file portal (Next.js + React + Bootstrap SCSS).",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "axios": "^1.20.0",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.2",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "sass": "^1.106.1",
+    "typescript": "^5.9"
+  },
+  "engines": {
+    "node": ">=20.9"
+  }
+}
