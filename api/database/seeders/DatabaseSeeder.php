@@ -64,5 +64,8 @@ class DatabaseSeeder extends Seeder
             $file('kickoff-notes.txt', 'Kickoff meeting notes'),
             'Kickoff Notes',
         );
+
+        // Faker-generated clients, users and documents with version history.
+        $this->call(DemoContentSeeder::class);
     }
 }
